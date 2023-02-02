@@ -19,4 +19,4 @@ function Main(props) {
   );
 }
 
-export default Mainn
+export default Main
