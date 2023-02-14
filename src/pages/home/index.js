@@ -14,18 +14,38 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import axios from 'axios';
+import { useState, useEffect } from "react";
 
+const url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
 
-
+// const config = {
+//   headers:{
+//     "AccessToken": "7739739b-4644-4ddd-84f8-fdb53af124c7"
+//   }
+// };
 
 
 
 function HomePage(props) {
 
-
+  const config = {
+    headers: {
+      AccessToken: "7739739b-4644-4ddd-84f8-fdb53af124c7"
+    },
+  };
+  
+  axios
+    .get("https://localhost/copy_1/hs/HTTP_SERVER/object_card",
+    config,{
+      params: {
+        code: "000000103"
+      }
+    })
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error.response));
     return (
 
-        <div><p>mm</p>
+        <div><p>{url}</p>
 
       </div>
 

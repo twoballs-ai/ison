@@ -8,14 +8,20 @@ import Typography from '@mui/material/Typography';
 import { Route, Routes } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import "./main.css"
+import { Paper } from "@mui/material";
+import { Container } from "@mui/system";
 
 
 function Main(props) {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <Toolbar />
+    <Paper>
+      <Container>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }} className={"main"}>
+      
       <Outlet />
     </Box>
+    </Container>
+    </Paper>
   );
 }
 
