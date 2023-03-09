@@ -16,11 +16,11 @@ function Main(props) {
   return (
     <Paper>
       <Container>
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }} className={"main"}>
-      
-      <Outlet />
-    </Box>
-    </Container>
+     
+
+          <Outlet />
+        
+      </Container>
     </Paper>
   );
 }

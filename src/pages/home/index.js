@@ -13,43 +13,69 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import PropTypes from 'prop-types';
+import { useTheme } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableContainer from '@mui/material/TableContainer';
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import axios from 'axios';
-import { useState, useEffect } from "react";
-
-const url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
-
-// const config = {
-//   headers:{
-//     "AccessToken": "7739739b-4644-4ddd-84f8-fdb53af124c7"
-//   }
-// };
 
 
+const baseURL = "http://10.0.0.13:5000/api/v1.0/podved/";
 
 function HomePage(props) {
+  const [podveds, setPodveds] = React.useState([]);
 
-  const config = {
-    headers: {
-      AccessToken: "7739739b-4644-4ddd-84f8-fdb53af124c7"
-    },
-  };
-  
-  axios
-    .get("https://localhost/copy_1/hs/HTTP_SERVER/object_card",
-    config,{
-      params: {
-        code: "000000103"
-      }
-    })
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error.response));
-    return (
+  React.useEffect(() => {
+    axios.get(baseURL).then((res) => {
+      // console.log(res.data.data)
+      setPodveds(res.data.data);
+    });
+  }, []);
 
-        <div><p>{url}</p>
+  if (!podveds) return null;
 
-      </div>
 
-    );
+
+  return (
+    <div>
+
+
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Наименование подведомственной организации</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {podveds.map(podved => (
+            <TableRow
+              key={podved.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {podved.name}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+    </div>
+  );
   }
 
   export default HomePage

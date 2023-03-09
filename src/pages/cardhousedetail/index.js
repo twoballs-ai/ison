@@ -19,20 +19,20 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import axios from 'axios';
 
 
-  const baseURL = "http://10.0.0.13:5000/api/v1.0/category/";
+  const baseURL = "http://10.0.0.13:5000/api/v1.0/cardhousedetail/000000103/";
 
-function CategoryPage(props) {
+function CardhouseDetailPage(props) {
 
-  const [categories, setCategories] = React.useState([]);
+  const [cardhousedetails, setCardhouseDetails] = React.useState(null);
 
   React.useEffect(() => {
     axios.get(baseURL).then((res) => {
-      // console.log(res.data.data)
-      setCategories(res.data.data);
+      console.log(res.data)
+    //   setCardhouseDetails(res.data.data);
     });
   }, []);
 
-  if (!categories) return null;
+  if (!cardhousedetails) return null;
 
   // Avoid a layout jump when reaching the last page with empty rows.
 
@@ -49,13 +49,13 @@ function CategoryPage(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {categories.map(category => (
+          {cardhousedetails.map(cardhousedetail => (
             <TableRow
-              key={category.name}
+              key={cardhousedetail.CadastralNumber}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {category.name}
+                {cardhousedetail.CadastralNumber}
               </TableCell>
 
             </TableRow>
@@ -68,4 +68,4 @@ function CategoryPage(props) {
   );
   }
 
-  export default CategoryPage
+  export default CardhouseDetailPage

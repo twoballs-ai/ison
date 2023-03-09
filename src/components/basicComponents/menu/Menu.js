@@ -65,6 +65,7 @@ function Menu(props) {
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton
+                                    to="/category"
                                     selected={selectedIndex === 2}
                                     onClick={(event) => handleListItemClick(event, 2)}
                                 >
@@ -76,6 +77,7 @@ function Menu(props) {
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton
+                                    to="/objects"
                                     selected={selectedIndex === 3}
                                     onClick={(event) => handleListItemClick(event, 3)}
                                 >
