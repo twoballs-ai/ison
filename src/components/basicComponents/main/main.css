@@ -1,7 +1,9 @@
-.main{
-    background-color: white;
-    height: 91vh;
-    width: 70vw;
-    margin-left: 2rem;
-    margin-top: 5rem;
+.content {
+  grid-area: main;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+}
+#container{
+  min-height:calc(93vh + 3px) ;
 }

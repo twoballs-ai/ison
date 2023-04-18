@@ -1,38 +1,36 @@
-import React from "react";
-import "./header.css"
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Logo from '../../static/images/min_kult.svg'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
+// import React from "react";
+// import "./header.css"
+// import logo from '../../static/images/min_kult.svg'
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main:  '#183B8D',
-    },
-    secondary: {
-      main: '#f44336',
-    },
-  },
-});
 
-const drawerWidth = 290;
+// function Header(props) {
+//     return (
 
-function Header(props) {
-    return (
-      <ThemeProvider theme={theme}>
-        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-          <a href=""> <img alt="" src={Logo}></img> </a>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      </ThemeProvider>
 
-    )
-}
+// <>
+// <nav className="header navbar navbar-expand-lg navbar-dark">
+//         <div className="container-fluid">
+//             <a href="{{ url_for('podved', id = '1') }}"><img className="logo justify-content-start" alt="Logo"
+//                                                    src={logo} /></a>
+//             <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+//                     data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
+//                 <span className="navbar-toggler-icon"></span>
+//             </button>
+//             <div className="d-flex justify-content-end col-7">Пользователь: </div>
 
-export default Header
+//             <div className="text-center"><a href="{{ url_for('auth_func.signout') }}"
+//                                         className="btn btn-link border-0 col-12 text-start shadow-none fw-semibold text-secondary"
+//                                         role="button">
+//                 <svg className="MuiSvgIcon-root" fill="white" width="20" height="20" focusable="false" viewBox="0 0 24 24"
+//                      aria-hidden="true">
+//                     <path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z"></path>
+//                 </svg>
+//             </a></div>
+//         </div>
+//     </nav>
+// </>
+  
+//     )
+// }
+
+// export default Header

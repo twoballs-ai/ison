@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,16 +18,40 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
+import { Link } from "react-router-dom";
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Form from "../../components/addnewcustomer/forms/form";
+import Forms from "../../components/addnewcustomer/forms/forms";
 
   const baseURL = "http://10.0.0.13:5000/api/v1.0/customers/1/";
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    // width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+
 
 function ObjectsPage(props) {
+// stepper start
+
+// stepper end
 
   const [objects, setObjects] = React.useState([]);
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   React.useEffect(() => {
-    axios.get(baseURL).then((res) => {
+    const accesscookie = Cookies.get('access')
+    axios.get(baseURL, { headers: { access: accesscookie } }).then((res) => {
       // console.log(res.data.data)
       setObjects(res.data.data);
     });
@@ -38,6 +63,17 @@ function ObjectsPage(props) {
 
   return (
     <div>
+<Button variant="contained" onClick={handleOpen}>Добавить объект недвижимости</Button>
+<Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Form />
+        </Box>
+      </Modal>
 
 
     <TableContainer component={Paper}>
@@ -54,10 +90,13 @@ function ObjectsPage(props) {
         </TableHead>
         <TableBody>
           {objects.map(object => (
-            <TableRow
+            
+            <TableRow component={Link} to={`/cardhousedetail/${object.code}`}
+            style={{ textDecoration: 'none', color: 'black' }}
               key={object.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
+              
               <TableCell component="th" scope="row">
                 {object.name}
               </TableCell>
@@ -66,7 +105,9 @@ function ObjectsPage(props) {
               <TableCell align="right">{object.owner}</TableCell>
               <TableCell align="right">{object.encumbrance}</TableCell>
               <TableCell align="right">{object.okn}</TableCell>
+              
             </TableRow>
+            
           ))}
         </TableBody>
       </Table>

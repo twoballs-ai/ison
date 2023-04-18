@@ -1,10 +1,13 @@
 .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    background-color: purple;
-    color: white;
-  }
-  
+  grid-area: hd;
+  width: auto;
+  padding: 4px;
+  height: 60px;
+  background-color: #183B8D;
+  color: white;
+  font-size: 15px;
+}
+   .logo {
+    width: 300px;
+    padding-left: 20px;
+  }   

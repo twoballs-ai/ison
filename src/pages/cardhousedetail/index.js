@@ -1,71 +1,761 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
+
 import axios from 'axios';
+import { useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
-  const baseURL = "http://10.0.0.13:5000/api/v1.0/cardhousedetail/000000103/";
 
 function CardhouseDetailPage(props) {
-
+  const { id } = useParams();
+  const baseURL = `http://10.0.0.13:5000/api/v1.0/cardhousedetail/${id}/`;
   const [cardhousedetails, setCardhouseDetails] = React.useState(null);
 
   React.useEffect(() => {
-    axios.get(baseURL).then((res) => {
-      console.log(res.data)
-    //   setCardhouseDetails(res.data.data);
+    const accesscookie = Cookies.get('access')
+    axios.get(baseURL, { headers: { access: accesscookie } }).then((res) => {
+      // console.log(res.data)
+      setCardhouseDetails(res.data);
     });
-  }, []);
+  }, [id]);
 
   if (!cardhousedetails) return null;
 
   // Avoid a layout jump when reaching the last page with empty rows.
 
   return (
-    <div>
+    <>
+
+        <ul className="list-group list-group-flush box overflow-auto my-1">
+          <li className="list-group-item">
+            <h1 className="display-6 text-center"></h1>
+            {/* <a className="btn btn-light col-2 ml-5 shadow" href="https://yandex.ru/maps/?z=16"
+              role="button" target="_blank"><i className="bi bi-geo-alt"></i>Найти на яндекс картах</a> */}
+          </li>
 
 
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Категории</TableCell>
+          <li className="list-group-item border-0 ">
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {cardhousedetails.map(cardhousedetail => (
-            <TableRow
-              key={cardhousedetail.CadastralNumber}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {cardhousedetail.CadastralNumber}
-              </TableCell>
+            <div className="row m-3 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-light rounded-4">
+              <div className="col-5">
 
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                <div className="container_button">
 
-    </div>
+                  {/* <img src="{{ url_for('site.static', filename = data.foto_main.fotoAdr ) }}" width="300"
+                    height="300" className="border border-top-0 border-start-0 border-end-0 bg-body rounded-4" /> */}
+
+                </div>
+              </div>
+              <div className="col-5"><h5>Описание:</h5> </div>
+
+            </div>
+
+          </li>
+
+          <nav>
+            <div className="nav nav-tabs" id="nav-tab" role="tablist" style={{fontSize: "0.75rem"}} >
+              <button className="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1"
+                type="button" role="tab" aria-controls="nav-1" aria-selected="true">Основные сведения <br />об
+                объекте <br />недвижимого имущества
+              </button>
+              <button className="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2"
+                type="button" role="tab" aria-controls="nav-2" aria-selected="false">Сведения о<br />регистрации
+                объекта<br />недвижимого имущества
+              </button>
+              <button className="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3"
+                type="button" role="tab" aria-controls="nav-3" aria-selected="false">Сведения об<br />
+                ограничениях (обременениях) <br />на объект недвижимого <br />имущества
+              </button>
+              <button className="nav-link" id="nav-4-tab" data-bs-toggle="tab" data-bs-target="#nav-4"
+                type="button" role="tab" aria-controls="nav-4" aria-selected="false">Сведения о<br />жилых
+                помещениях
+              </button>
+              <button className="nav-link" id="nav-5-tab" data-bs-toggle="tab" data-bs-target="#nav-5"
+                type="button" role="tab" aria-controls="nav-5" aria-selected="false">Прочие технические<br />
+                характеристики объекта<br /> недвижимого имущества
+              </button>
+              <button className="nav-link" id="nav-6-tab" data-bs-toggle="tab" data-bs-target="#nav-6"
+                type="button" role="tab" aria-controls="nav-6" aria-selected="false">Финаносвые
+                показатели<br />
+                объекта недвижимого<br /> имущества
+              </button>
+              <button className="nav-link" id="nav-7-tab" data-bs-toggle="tab" data-bs-target="#nav-7"
+                type="button" role="tab" aria-controls="nav-7" aria-selected="false">Выбытие имущетсва<br />
+                объекта недвижимого<br /> имущества
+              </button>
+              <button className="nav-link" id="nav-8-tab" data-bs-toggle="tab" data-bs-target="#nav-8"
+                type="button" role="tab" aria-controls="nav-8" aria-selected="false">Документы
+              </button>
+            </div>
+          </nav>
+          <div className="tab-content mb-2" id="nav-tabContent">
+            <div className="tab-pane fade show active pb-3" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Статус карты
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Вид объекта недвижимого имущества (согласно данным ЕГРН)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование объекта недвижимого имущества (согласно данным ЕГРН)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Назначение объекта недвижимого имущества (за исключением земельных участков)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Вид права
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Категория земель
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Основной вид разрешенного использования (только для земельных участков)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Вспомогательный вид разрешенного использования (только для земельных участков)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование документа о закреплении на праве оперативного управления, хозяйственного
+                      ведения, постоянного (бессрочного) пользования объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата документа о закреплении на праве оперативного управления, хозяйственного ведения,
+                      постоянного (бессрочного) пользования объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер документа о закреплении на праве оперативного управления, хозяйственного ведения,
+                      постоянного (бессрочного) пользования объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование субъекта Российской Федерации расположения объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование муниципального округа/ образования расположения объекта недвижимого
+                      имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Адрес (местоположение) объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Планируется изменение назначения объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Является ли объектом культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Категория объекта историко-культурного значения
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Регистрационный номер объекта культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер записи государственной регистрации ограничения (обременения) имущественных прав на
+                      объект культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата государственной регистрации ограничения (обременения) имущественных прав на объект
+                      культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Протяженность (м), глубина (м), глубина залегания (м), площадь (кв.м), объем (куб.м),
+                      высота (м), площадь застройки (кв.м) объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Технические параметры
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Единица измерения
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+            <div className="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Кадастровый номер (согласно данным ЕГРН)
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td>Дата присвоения кадастрового номера</td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td>(согласно данным ЕГРН)"
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер записи в ЕГРН о регистрации права собственности Российской Федерации на объект
+                      недвижимого имуществ
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата регистрации права собственности Российской Федерации на объект недвижимого
+                      имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер записи в ЕГРН о регистрации права пользования на объект недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата регистрации права пользования на объект недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Плановая дата государственной регистрации права Российской Федерации (на неоформленные
+                      объекты недвижимости)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Плановая дата государственной регистрации права оперативного управления (на
+                      неоформленные объекты недвижимости
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Реестровый номер федерального имущества (РНФИ)
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Наименование документа о предоставление в пользования объекта недвижимого имущества
+                      (аренда, безвозмездное пользоввание и иное)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование обременения (аренда, субаренда, арест, сервитут, безвозмездное и иное)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Лицо в пользу которого установлено обременение (полное наименование / ФИО, ИНН, адрес,
+                      контактные данные)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Цель установления ограничения (обременения)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата документа-основания (согласия) о предоставление в пользования объекта недвижимого
+                      имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер документа- основания (согласия) о предоставление в пользования объекта недвижимого
+                      имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Площадь (кв.м), протяженность (м), глубина (м), глубина залегания (м), объем (куб.м),
+                      высота (м) обременения
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Технические параметры (см. выпадающий список)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Единица измерения обременения (см. выпадающий список)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер записи государственной регистрации ограничения (обременения)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата государственной регистрации ограничения (обременения)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Период действия договора (соглашения)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Размер платежа
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Регистрационный номер объекта культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер записи государственной регистрации ограничения (обременения) имущественных прав на
+                      объект культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата государственной регистрации ограничения (обременения) имущественных прав на объект
+                      культурного наследия
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Отнесено ли жилое помещение к специализированному жилищному фонду
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование документа-основания о предоставлении в пользование жилого фонда
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Дата и номер документа-основания о предоставлении в пользование жилого помещения
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Техническое состояние объекта недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер, тип этажа, на котором расположено помещение, машино-место
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровые номера иных объектов недвижимости, в пределах которых расположен объект
+                      недвижимости
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровые номера расположенных в пределах земельного участка объектов недвижимости
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровые номера объектов недвижимости, из которых образован объект недвижимости
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровые номера помещений, машино-мест, расположенных в здании или сооружении
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>"Кадастровый номер земельного участка на котором расположен объект недвижимого имущества
+                      (сделать привязку - выбрать из списка уже внесенных объектов)
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Кадастровая стоимость по данным ЕГРН, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровая стоимость по данным РФИ, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Балансовая стоимость по данным бухгалтерского учета, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Балансовая стоимость по данным РФИ, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Остаточная стоимость по данным бухгалтерского учета, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Остаточная стоимость по данным РФИ, рублей
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Номер счета бухгалтерского учета
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование счета бухгалтерского учета
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Основание выбытия недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Наименование документа-основания, послужившего основанием для выбытия объекта из владния
+                      Управления / Учреждения / Предприятия Минкультуры России
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Реквизиты документа-основания, послужившего основанием для выбытия объекта из владния
+                      Управления / Учреждения / Предприятия Минкультуры России
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div className="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"
+              tabindex="0">
+              <table className="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Выписка из ЕГРН об основных характеристиках и зарегистрированных правах на объект недвижимости (выписка из ЕГРН), содержащая сведения о государственной регистрации права собственности Российской Федерации / права оперативного управления на объект недвижимого имущества / права постоянного (бессрочного) пользования на земельный участок (актуализировать раз в пол года)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Выписка из реестра федерального имущества (выписка из РФИ) (актуализировать раз в пол года)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ-основание предоставления права постоянного (бессрочного) пользования земельного участка
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ-основание предоставления права оперативного управления объекта недвижимого имущества / права постоянного (бессрочного) пользования земельного участка
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ-основание отнесения жилого помещения к специализированному жилищному фонду
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ-основание возникновения договорных отношений в отношении объектов недвижимости, предоставляемых подведомственными Минкультуры России организациями на праве аренды
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ-основание возникновения договорных отношений в отношении объектов недвижимости, предоставляемых подведомственными Минкультуры России организациями в безвозмездное пользование
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Договор аренды
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Договор безвозмездного пользования
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Охранное обязательство на объект (выявленный объект) культурного наследия (здание, строение, сооружение)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Технический паспорт
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Экспликация помещений
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Кадастровый паспорт
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ, подтверждающий первоначальную (балансовую) стоимость имущества (инвентарная карточка) (актуализировать раз в квартал)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Справка о кадастровой стоимости (актуализировать раз в квартал)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Оборотно-сальдовая ведомость на дату формирования по счетам: «Основные средства – недвижимое имущество учреждения (жилые помещения, нежилые помещения, здания, сооружения, водоходное судно и иные объекты недвижимости)», «Непроизведенные активы – недвижимое имущество учреждения (земельные участки)» с подробной расшифровкой всех строк в формате Excel - актуализировать раз в пол года
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документы, подтверждающие выбытие объектов из владения (например, решение суда, распоряжение или иной документ)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Заключение о соответствии жилого помещения предъявляемым к нему требованиям
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Заверенная в установленном порядке копия протокола заседания Комиссии
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Заверенная в установленном порядке копия распорядительного акта Организации о создании постоянно действующей комиссии
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Положение о постоянно действующей комиссии и сведения о ее составе
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Акт о списании федерального недвижимого имущества
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Заключение независимого эксперта о техническом состоянии объекта недвижимого имущества (включая объекты незавершенного строительства)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Технико-экономическое обоснование
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Справка уполномоченного органа об отсутствии граждан, зарегистрированных для проживания по адресу местонахождения предлагаемого к списанию жилого здания (жилых зданий), в случае принятия решения о списании жилого здания (жилых зданий)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Акт о повреждениях, причиненных федеральному недвижимому имуществу</td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td>Справки уполномоченных организаций, подтверждающей факт аварии, стихийного бедствия или иной чрезвычайной ситуации
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Постановление о возбуждении уголовного дела, вынесенного в соответствии со статьей 146 Уголовно-процессуального кодекса Российской Федерации, копия постановления о прекращении уголовного дела и уголовного преследования, вынесенного в соответствии со статьей 213 Уголовно-процессуального кодекса Российской Федерации, или иные документы, подтверждающие принятие мер по защите интересов Организации или Предприятия, или возмещению причиненного ущерба (при наличии)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Судовые документы
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Выписка из Государственного реестра судов
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Заключение российской организации, осуществляющей классификацию и освидетельствование судов, зарегистрированных в Государственном судовом реестре, в бербоут-чартерном реестре или в Российском международном реестре судов, о результатах освидетельствования морского, речного судна, а также фотографии объекта, предлагаемого к списанию (с указанием даты съемки)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Отчет об оценке рыночной стоимости права пользования и владения на условиях аренды
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Утвержденная аукционная (конкурсная) документация
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Документ уполномоченных органов, подтверждающий соответсвие помещений, планируемый к передачу в аренду (безвозмездное пользование), требованиям пожарной безопасности со сроком давности не более 3-х лет
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Устав Учреждения / Предприятия (с изменениями и дополнениями)
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Выписка из ЕГРЮЛ
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Свидетельство о внесении записи в ЕГРЮЛ
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Свидетельство о постановке на учет в налоговом органе
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Соглашение об установлении сервитута
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+
+        </ul>
+
+        <h1 className="mt-12 mb-8 px-6 text-center text-lg md:text-2xl font-semibold">
+          Галерея
+        </h1>
+
+        <div className="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
+
+        </div>
+
+
+     
+    </>
   );
-  }
+}
 
-  export default CardhouseDetailPage
+export default CardhouseDetailPage

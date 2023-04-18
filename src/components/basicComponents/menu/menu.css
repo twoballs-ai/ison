@@ -1,7 +1,12 @@
-.menu {
+/* .menu {
     margin-top: 5rem;
 }
 
 .containerMenu{
     margin-top: 60px;
+    position: fixed;
+    position:relative;
+} */
+.sidebar {
+    grid-area: sb;
 }
