@@ -1,21 +1,30 @@
 import React from "react";
-
-import PropTypes from 'prop-types';
+import { Navigate } from "react-router-dom";
+// import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { NavLink ,Link } from "react-router-dom";
+// import { NavLink ,Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Pagination from "../../components/adittional/pagination";
+import { useEffect, useState } from "react";
 
-const baseURL = "http://10.0.0.13:5000/api/v1.0/podved/";
 
 function HomePage(props) {
+  const {page} = useParams();
   const [podveds, setPodveds] = React.useState([]);
+  // const [authenticated, setauthenticated] = useState(null);
+  const baseURL = `http://10.0.0.13:5000/api/v1.0/podved/${page}/`;
   const navigate = useNavigate();
   React.useEffect(() => {
     const accesscookie = Cookies.get('access')
     axios.get(baseURL, { headers: { access: accesscookie } }).then((res) => {
       console.log(res.data.data)
       setPodveds(res.data.data);
+//       const loggedInUser = localStorage.getItem("authenticated");
+// if (loggedInUser) {
+// setauthenticated(loggedInUser);
+// }
     });
   }, []);
 
@@ -24,8 +33,13 @@ function HomePage(props) {
   function handleRowClick(podvedcode) {
     navigate(`/cardhouse/${podvedcode}`);
     console.log('sdvs')
+    
   }
-
+  // if (!authenticated) {
+  //   // Redirect
+  //   console.log('1111')
+  //   return <Navigate replace to="/login" />;
+  //   } else {
   return (
    <>
 
@@ -44,30 +58,20 @@ function HomePage(props) {
         </thead>
         <tbody>
         {podveds.map(podved => (
-          // <Link to={`/cardhouse/${podved.code}`}  >
              <tr key={podved.code} onClick={() => handleRowClick(podved.code)} >
                <td className="noselect">{podved.name}</td>
           <td className="text-secondary">&gt;&gt;&gt;</td>
           </tr>
-          // </Link>
-         
-       
-            // <TableRow
-            //   key={podved.name}
-            //   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            // >
-            //   <TableCell component="th" scope="row">
-            //     {podved.name}
-            //   </TableCell>
-            // </TableRow>
+
           ))}
         </tbody>
     </table>
 
 </ul>
-
+<Pagination />
 </>
-  );
-  }
+  )
+        // };
+  };
 
   export default HomePage

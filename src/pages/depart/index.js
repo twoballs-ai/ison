@@ -5,26 +5,35 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { NavLink ,Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const baseURL = "http://10.0.0.13:5000/api/v1.0/podved/";
 
 function DepartmentPage(props) {
-  const [podveds, setPodveds] = React.useState([]);
+  const [departments, setDepartments] = React.useState([]);
+  const {page} = useParams();
   const navigate = useNavigate();
+  const {state} = useLocation();
+  const {depart} = state;
+  const baseURL = `http://10.0.0.13:5000/api/v1.0/department/${page}/`;
   React.useEffect(() => {
     const accesscookie = Cookies.get('access')
-    axios.get(baseURL, { headers: { access: accesscookie } }).then((res) => {
+    axios.get(baseURL, { headers: { access: accesscookie }, params: {
+      department: depart
+    } },
+      
+    ).then((res) => {
       console.log(res.data.data)
-      setPodveds(res.data.data);
+      setDepartments(res.data.data);
     });
-  }, []);
+  }, [depart]);
 
-  if (!podveds) return null;
+  if (!departments) return null;
 
-  function handleRowClick(podvedcode) {
-    navigate(`/cardhouse/${podvedcode}`);
-    console.log('sdvs')
-  }
+  // function handleRowClick(departcode) {
+  //   navigate(`/department/${departcode}`);
+  //   console.log('sdvs')
+  // }
 
   return (
    <>
@@ -43,23 +52,14 @@ function DepartmentPage(props) {
         </tr>
         </thead>
         <tbody>
-        {podveds.map(podved => (
-          // <Link to={`/cardhouse/${podved.code}`}  >
-             <tr key={podved.code} onClick={() => handleRowClick(podved.code)} >
-               <td className="noselect">{podved.name}</td>
+        {departments.map(department => (
+             <tr key={department.code} 
+            //  onClick={() => handleRowClick(department.code)} 
+             >
+               <td className="noselect">{department.name}</td>
           <td className="text-secondary">&gt;&gt;&gt;</td>
           </tr>
-          // </Link>
-         
-       
-            // <TableRow
-            //   key={podved.name}
-            //   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            // >
-            //   <TableCell component="th" scope="row">
-            //     {podved.name}
-            //   </TableCell>
-            // </TableRow>
+
           ))}
         </tbody>
     </table>

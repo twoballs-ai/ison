@@ -4,13 +4,36 @@
 // import Main from './basicComponents/main/Main';
 import React from "react"
 import './layout.css';
-import { NavLink, Link, Outlet } from 'react-router-dom';
+import { NavLink, Link, Outlet, Navigate } from 'react-router-dom';
 import logo from './static/images/min_kult.svg'
 import DepartmentsList  from './adittional/departments_list'
+import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Layout(props) {
+    // const [isLoggedin, setIsLoggedin] = useState(false);
+    const navigate = useNavigate();
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("token");
+        if (!loggedInUser) {
+            navigate("/login", { replace: true });
+        }
+      }, []);
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            Cookies.remove('access');
+            Cookies.remove('refresh');
+            Cookies.remove('username');
+            console.log('sdvsd');
+            navigate("/login", { replace: true });
+             };
+        
+  
     const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+    const username = Cookies.get('username') 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
         
@@ -31,16 +54,16 @@ function Layout(props) {
                             data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="d-flex justify-content-end col-7">Пользователь: </div>
+                        <div className="d-flex justify-content-end col-7">Пользователь: {username}</div>
 
-                        <div className="text-center"><a href="{{ url_for('auth_func.signout') }}"
+                        <div className="text-center"><button onClick={handleSubmit}
                             className="btn btn-link border-0 col-12 text-start shadow-none fw-semibold text-secondary"
-                            role="button">
+                           >
                             <svg className="MuiSvgIcon-root" fill="white" width="20" height="20" focusable="false" viewBox="0 0 24 24"
                                 aria-hidden="true">
                                 <path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z"></path>
                             </svg>
-                        </a></div>
+                        </button></div>
                     </div>
                 </nav>
 
@@ -52,7 +75,7 @@ function Layout(props) {
 
                     <ul className="list-group list-group-flush mt-4">
 
-                        <li className="list-group-item border-0"> <NavLink to="/" style={({ isActive }) => ({
+                        <li className="list-group-item border-0"> <NavLink to="/1/" style={({ isActive }) => ({
                             color: isActive ? 'greenyellow' : 'white'
                         })}>
                             <button id="home" type="button"
@@ -66,7 +89,8 @@ function Layout(props) {
                                 Подведомственные организации
                             </button>
                         </NavLink></li>
-
+               
+                <DepartmentsList />
 
                         <li className="list-group-item border-0"><NavLink to="/customers" style={({ isActive }) => ({
                             color: isActive ? 'greenyellow' : 'white'
@@ -168,6 +192,8 @@ function Layout(props) {
                                     <div className="boxmin2">Подведомственные организации</div>
                                 </button>
                             </a></li>
+                      
+
                             <li className="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('category') }}">
                                 <button id="category" type="button" className="btn border-0 btn-light col-12 text-start shadow-none">
                                     <div className="boxmin">
@@ -216,8 +242,8 @@ function Layout(props) {
                 
                 <div className="content overflow-auto ms-3  ">
                 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Портал</li>
+  <ol className="breadcrumb">
+    <li className="breadcrumb-item active" aria-current="page">Портал</li>
   </ol>
     </nav>
                     <div id="container" className="container-fluid rounded px-0 bg-white border border-grey ">

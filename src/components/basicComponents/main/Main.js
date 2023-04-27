@@ -9,7 +9,7 @@
 // function Main(props) {
 //   return (
 //     <>
-//   <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+//   <div id="container" gin="container-fluid rounded px-0 bg-white border border-grey">
 //           <Outlet />
 //           </div>
 //           </>

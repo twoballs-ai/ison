@@ -6,11 +6,12 @@ function SearchPage(props) {
 <>
 
 
-        <ul class="list-group list-group-flush box overflow-auto my-1">
-                        <div class="mt-5 mb-5 pt-5 pb-5"></div>
-            <img src={Imag} class="img-fluid mt-5" alt="Responsive"/>
+        <ul className="list-group list-group-flush box overflow-auto my-1">
+                        <div className="mt-5 mb-5 pt-5 pb-5"></div>
+            <img src={Imag} className="img-fluid mt-5" alt="Responsive"/>
 
         </ul>
+        
 
 
 </>
