@@ -63,20 +63,15 @@ const StepSeven = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                 <div className="row">
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn1"
-                            >Выбытие объекта недвижимого имущества</label>
-                        <input
-                            className="form-control"
-                            id="name_egrn1" 
-                            name="name_egrn1"
-                            type="text" 
-                            maxLength="100"
-                            value={onePageInfo.name_egrn1}
-                            onChange ={handleOnChange}
-                        />
+                            >1. Выбытие объекта недвижимого имущества</label>
+                  <select class="form-select" aria-label="Default select example">
+                            <option selected disabled>Выберите из выпадающего списка</option>            
+                            <option value="1">...</option>
+                        </select>
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn2"
-                            >Наименование документа-основания, послужившего основанием для выбытия объекта из владения Территориальных управлений Минкультуры России / Организаций / Предприятий Минкультуры России</label>
+                            >2. Наименование документа-основания, послужившего основанием для выбытия объекта из владения Территориальных управлений Минкультуры России / Организаций / Предприятий Минкультуры России</label>
                         <input
                             className="form-control"
                             id="name_egrn2" 
@@ -91,7 +86,7 @@ const StepSeven = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                         <label htmlFor="name_egrn2"
                             ><div className="col-12 mb-3">
                             <label htmlFor="name_egrn2"
-                                >Наименование документа-основания, послужившего основанием для выбытия объекта из владения Территориальных управлений Минкультуры России / Организаций / Предприятий Минкультуры России</label>
+                                >3. Реквизиты документа-основания, послужившего основанием для выбытия объекта из владния Территориальных управлений Минкультуры России / Организаций / Предприятий Минкультуры России</label>
                             <input
                                 className="form-control"
                                 id="name_egrn2" 
@@ -102,15 +97,7 @@ const StepSeven = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                                 onChange ={handleOnChange}
                             />
                         </div></label>
-                        <input
-                            className="form-control"
-                            id="name_egrn2" 
-                            name="name_egrn2"
-                            type="text" 
-                            maxLength="100"
-                            value={onePageInfo.name_egrn2}
-                            onChange ={handleOnChange}
-                        />
+                  
                     </div>
                 </div>
 
