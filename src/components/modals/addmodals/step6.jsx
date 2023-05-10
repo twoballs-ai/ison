@@ -62,7 +62,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                 <div className="row">
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn1"
-                            >Кадастровая стоимость по данным ЕГРН, рублей</label>
+                            >1. Кадастровая стоимость по данным ЕГРН, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn1" 
@@ -75,7 +75,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn2"
-                            >Кадастровая стоимость по данным РФИ, рублей</label>
+                            >2. Кадастровая стоимость по данным РФИ, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn2" 
@@ -88,7 +88,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn1"
-                            >Балансовая стоимость по данным бухгалтерского учета, рублей</label>
+                            >3. Балансовая стоимость по данным бухгалтерского учета, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn1" 
@@ -101,7 +101,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn2"
-                            >Балансовая стоимость по данным РФИ, рублей</label>
+                            >4. Балансовая стоимость по данным РФИ, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn2" 
@@ -114,7 +114,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn1"
-                            >Остаточная стоимость по данным бухгалтерского учета, рублей</label>
+                            >5. Остаточная стоимость по данным бухгалтерского учета, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn1" 
@@ -127,7 +127,7 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn2"
-                            >Остаточная стоимость по данным РФИ, рублей</label>
+                            >6. Остаточная стоимость по данным РФИ, рублей</label>
                         <input
                             className="form-control"
                             id="name_egrn2" 
@@ -140,29 +140,19 @@ const StepSix = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn1"
-                            >Номер счета бухгалтерского учета</label>
-                        <input
-                            className="form-control"
-                            id="name_egrn1" 
-                            name="name_egrn1"
-                            type="text" 
-                            maxLength="100"
-                            value={onePageInfo.name_egrn1}
-                            onChange ={handleOnChange}
-                        />
+                            >7. Номер счета бухгалтерского учета</label>
+                         <select class="form-select" aria-label="Default select example">
+                            <option selected disabled>Выберите из выпадающего списка</option>            
+                            <option value="1">...</option>
+                        </select>
                     </div>
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn2"
-                            >Наименование счета бухгалтерского учета</label>
-                        <input
-                            className="form-control"
-                            id="name_egrn2" 
-                            name="name_egrn2"
-                            type="text" 
-                            maxLength="100"
-                            value={onePageInfo.name_egrn2}
-                            onChange ={handleOnChange}
-                        />
+                            >8. Наименование счета бухгалтерского учета</label>
+             <select class="form-select" aria-label="Default select example">
+                            <option selected disabled>Выберите из выпадающего списка</option>            
+                            <option value="1">...</option>
+                        </select>
                     </div>
                 </div>
 
