@@ -5,9 +5,13 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import ModalAdd from "../../components/modals/Modal";
+
+
 // import Form from "../../components/addnewcustomer/forms/form";
 // import Forms from "../../components/addnewcustomer/forms/forms";
-import ModalManager from "../../components/modals/modalsManager";
+// import ModalManager from "../../components/modals/modalsManager";
 
 const baseURL = "http://10.0.0.13:5000/api/v1.0/customers/1/";
 
@@ -15,26 +19,14 @@ const baseURL = "http://10.0.0.13:5000/api/v1.0/customers/1/";
 
 
 function ObjectsPage(props) {
-  // stepper start
 
-  // stepper end
-  const [modalOpen, setModal] = useState(false)
-
-  const openModal = event => {
-    event.preventDefault()
-    const { target: { dataset: { modal }}} = event
-    if (modal) setModal(modal)
-  }
-
-  const closeModal = () => {
-    setModal('')
-  }
 
 
   const [objects, setObjects] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   React.useEffect(() => {
     const accesscookie = Cookies.get('access')
@@ -53,12 +45,9 @@ function ObjectsPage(props) {
 
   return (
     <>
-
-
+<ModalAdd />
       <div className="d-grid gap-2  justify-content-md-end bg-transparent">
-        <button  onClick={openModal} type="button" id="modalactivation" className="btn btn-primary m-2">Новое модальное окно
-        </button>
-<ModalManager closeFn={closeModal} modal={modalOpen} />
+    
       </div>
      
 
