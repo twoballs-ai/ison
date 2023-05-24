@@ -5,6 +5,17 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import Cookies from 'js-cookie';
 
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import FirstTab from "./Tabs/firstTab";
+import SecondTab from "./Tabs/secondTab";
+import ThreeTab from "./Tabs/threeTab";
+import FourTab from "./Tabs/fourTab";
+import FiveTab from "./Tabs/fiveTab";
+import SixTab from "./Tabs/sixtab";
+import SevenTab from "./Tabs/sevenTab";
+import EightTab from "./Tabs/eightTab";
+import NineTab from "./Tabs/nineTab";
 
 
 function CardhouseDetailPage(props) {
@@ -52,7 +63,45 @@ function CardhouseDetailPage(props) {
             </div>
 
           </li>
-
+          <Tabs
+      defaultActiveKey="nav-1-tab"
+    >
+      <Tab eventKey="nav-1-tab" title="Основные сведения об
+                объекте недвижимого имущества">
+      <FirstTab />
+      </Tab>
+      <Tab eventKey="nav-2-tab" title="Сведения о регистрации
+                объекта недвижимого имущества">
+     <SecondTab />
+      </Tab>
+      <Tab eventKey="nav-3-tab" title="Сведения об
+                ограничениях (обременениях) на объект недвижимого имущества">
+      <ThreeTab />
+      </Tab>
+      <Tab eventKey="nav-4-tab" title="Сведения о жилых
+                помещениях">
+       <FourTab />
+      </Tab>
+      <Tab eventKey="nav-5-tab" title="Прочие технические 
+                характеристики объекта недвижимого имущества">
+       <FiveTab />
+       </Tab>
+       <Tab eventKey="nav-6-tab" title="Финаносвые
+                показатели 
+                объекта недвижимого имущества">
+       <SixTab />
+       </Tab>
+       <Tab eventKey="nav-7-tab" title="Выбытие имущетсва 
+                объекта недвижимого  имущества">
+       <SevenTab />
+       </Tab>
+       <Tab eventKey="nav-8-tab" title="Документы">
+       <EightTab />
+       </Tab>
+       <Tab eventKey="nav-9-tab" title="Архив">
+       <NineTab />
+       </Tab>
+    </Tabs>
           <nav>
             <div className="nav nav-tabs" id="nav-tab" role="tablist" style={{fontSize: "0.75rem"}} >
               <button className="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1"
@@ -86,6 +135,9 @@ function CardhouseDetailPage(props) {
               </button>
               <button className="nav-link" id="nav-8-tab" data-bs-toggle="tab" data-bs-target="#nav-8"
                 type="button" role="tab" aria-controls="nav-8" aria-selected="false">Документы
+              </button>
+              <button className="nav-link" id="nav-9-tab" data-bs-toggle="tab" data-bs-target="#nav-9"
+                type="button" role="tab" aria-controls="nav-9" aria-selected="false">Архив
               </button>
             </div>
           </nav>

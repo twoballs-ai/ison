@@ -1,7 +1,7 @@
 import Reac from "react"
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-const StepEight = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
+const StepEight = ({ onePageInfo, nextStep, prevStep, handleOnChange, handleSubmit, handleClose }) => {
     return (
         <>
             <Modal.Header closeButton>
@@ -269,7 +269,7 @@ const StepEight = ({ onePageInfo, nextStep, prevStep, handleOnChange }) => {
                 </Button>
                 <Button
                     variant="secondary"
-                >
+                    onClick={() => handleSubmit()}>                
                     Сохранить
                 </Button>
 

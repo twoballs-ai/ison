@@ -63,24 +63,31 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >1. Статус карты </label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>Выберите из выпадающего списка</option>
+                        <select 
+                        className="form-select" 
+                        aria-label="Default select example"
+                        id="card_status"
+                        name="card_status"
+                        value={onePageInfo.card_status}
+                        onChange={handleOnChange}
+                        >
+                            <option defaultValue>Выберите из выпадающего списка</option>
                             <option value="1">Черновик</option>
-                            <option value="1">Создан</option>
-                            <option value="1">Приостановлен</option>
-                            <option value="1">Учтен</option>
-                            <option value="1">Исключен</option>
-                            <option value="1">Исправлен</option>
-                            <option value="1">На доработку</option>
-                            <option value="1">На подпись</option>
-                            <option value="1">Направлен</option>
-                            <option value="1">На рассмотрении</option>
-                            <option value="1">Отказ</option>
-                            <option value="1">Подготовлен</option>
-                            <option value="1">Принят</option>
+                            <option value="2">Создан</option>
+                            <option value="3">Приостановлен</option>
+                            <option value="4">Учтен</option>
+                            <option value="5">Исключен</option>
+                            <option value="6">Исправлен</option>
+                            <option value="7">На доработку</option>
+                            <option value="8">На подпись</option>
+                            <option value="9">Направлен</option>
+                            <option value="10">На рассмотрении</option>
+                            <option value="11">Отказ</option>
+                            <option value="12">Подготовлен</option>
+                            <option value="13">Принят</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="name_egrn"
                         >2. Кадастровый номер</label>
@@ -94,7 +101,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >3. Дата присвоения кадастрового номера (согласно данным ЕГРН)</label>
@@ -109,7 +116,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >4. Вид объекта недвижимого имущества (согласно данным ЕГРН)</label>
@@ -132,7 +139,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
 
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >5. Наименование объекта недвижимого имущества 
@@ -147,7 +154,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >6. Адрес (местоположение) объекта недвижимого имущества</label>
@@ -161,7 +168,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <label htmlFor="card_status"
                         >7. Площадные характеристики</label>
                         <div className="col-5 mb-3">
@@ -187,7 +194,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">Земельный участок</option>
                         </select>
                         </div>
-              <hr />
+              
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >8. Назначение объекта недвижимого имущества (за исключением земельных участков)</label>
@@ -196,7 +203,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">....</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         > 
@@ -206,7 +213,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">....</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >10. Основной вид разрешенного использования (только для земельных участков)</label>
@@ -221,7 +228,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             disabled
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >11. Вспомогательный вид разрешенного использования (только для земельных участков)</label>
@@ -236,7 +243,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             disabled
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >12. Наименование субъекта Российской Федерации расположения объекта недвижимого имущества</label>
@@ -245,7 +252,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">....</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >13. Наименование муниципального округа/ образования расположения объекта недвижимого имущества</label>
@@ -259,7 +266,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >14. Является ли объектом культурного наследия</label>
@@ -268,7 +275,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">....</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >15. Категория объекта историко-культурного значения</label>
@@ -277,7 +284,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             <option value="1">....</option>
                         </select>
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >16. Категория объекта историко-культурного значения</label>
@@ -291,7 +298,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >17. Категория объекта историко-культурного значения</label>
@@ -305,7 +312,7 @@ const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
                             onChange={handleOnChange}
                         />
                     </div>
-                    <hr />
+                    
                     <div className="col-12 mb-3">
                         <label htmlFor="card_status"
                         >18. Категория объекта историко-культурного значения</label>

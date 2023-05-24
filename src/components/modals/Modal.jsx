@@ -9,25 +9,37 @@ import StepFive from './addmodals/step5';
 import StepSix from './addmodals/step6';
 import StepSeven from './addmodals/step7';
 import StepEight from './addmodals/step8';
+import ModalsManager from './modalsManager';
 import './style.css';
 
 function ModalAdd({ open }) {
   const [show, setShow] = useState(false);
+
   const [onePageInfo, setOnePageInfo] = useState({
     card_status: "",
     name_egrn: "",
     name_egrn1: "",
     name_egrn2: "",
   })
+
   const [steps, setSteps] = useState(1)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const nextStep = () => {
     setSteps(steps + 1)
   }
+
   const prevStep = () => {
     setSteps(steps - 1)
   }
+
+  const handleSubmit = () =>{
+   
+    handleClose()
+    ModalsManager({onePageInfo})
+    setSteps(steps + 1)
+  }
+
   const handleOnChange = (e) => {
     const { name, value } = e.target
     setOnePageInfo({ ...onePageInfo, [name]: value })
@@ -70,15 +82,6 @@ function ModalAdd({ open }) {
             handleOnChange={handleOnChange}
           />
         )
-      case 2:
-        return (
-          <StepTwo
-            onePageInfo={onePageInfo}
-            nextStep={nextStep}
-            prevStep={prevStep}
-            handleOnChange={handleOnChange}
-          />
-        )
       case 5:
         return (
           <StepFive
@@ -86,6 +89,7 @@ function ModalAdd({ open }) {
             nextStep={nextStep}
             prevStep={prevStep}
             handleOnChange={handleOnChange}
+            handleClose={handleClose}
           />
         )
       case 6:
@@ -110,8 +114,10 @@ function ModalAdd({ open }) {
         return (
           <StepEight
             onePageInfo={onePageInfo}
+            nextStep={nextStep}
             prevStep={prevStep}
             handleOnChange={handleOnChange}
+            handleSubmit={handleSubmit}
           />
         )
       default:
