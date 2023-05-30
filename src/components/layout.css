@@ -200,7 +200,7 @@ a[data-fancybox] img {
   --fancybox-thumbs-width: 48px;
   --fancybox-thumbs-ratio: 1;
 
-  --carousel-button-svg-stroke-width: 1.5;
+  --carousel-button-svg-strokeWidth: 1.5;
   --carousel-button-svg-filter: none;
 }
 
@@ -213,7 +213,7 @@ a[data-fancybox] img {
   --carousel-button-svg-width: 20px;
   --carousel-button-svg-height: 20px;
 
-  --carousel-button-svg-stroke-width: 3;
+  --carousel-button-svg-strokeWidth: 3;
 }
 
 .fancybox__nav .carousel__button.is-next {

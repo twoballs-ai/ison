@@ -32,7 +32,7 @@ function CardhousePage(props) {
 
   return (
     <>
-     
+     <div id="container" className="container-fluid rounded px-0 bg-white border border-grey ">
         <h3 className="mx-2 text-center">{cardhouse.podved_info.name}</h3>
         <div className="container-fluid rounded px-0 mx-0 bg-white border border-grey">
             <table className="table">
@@ -148,7 +148,7 @@ function CardhousePage(props) {
   
         </div>
 
-   
+        </div>
     </>
   );
 }

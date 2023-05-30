@@ -9,7 +9,7 @@ function SecondTab(){
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>Кадастровый номер (согласно данным ЕГРН)
+                    <td className="col-6">Кадастровый номер (согласно данным ЕГРН)
                     </td>
                     <td className="col-6"></td>
                   </tr>

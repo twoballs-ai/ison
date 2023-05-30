@@ -38,7 +38,7 @@ function DepartmentPage(props) {
   return (
    <>
 
-
+<div id="container" className="container-fluid rounded px-0 bg-white border border-grey ">
 
 
 <ul className="list-group list-group-flush box overflow-auto my-1">
@@ -65,7 +65,7 @@ function DepartmentPage(props) {
     </table>
 
 </ul>
-
+</div>
 </>
   );
   }

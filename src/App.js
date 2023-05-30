@@ -38,7 +38,7 @@ function App() {
         <Route path='contacts' element={<ContactsPage />} />
         <Route path='search' element={<SearchPage />} />
         <Route path='reports' element={<ReportsPage />} />
-        <Route path='customers' element={<ObjectsPage />} />
+        <Route path='customers/:page' element={<ObjectsPage />} />
         <Route path='category' element={<CategoryPage />} />
         <Route path='cardhousedetail/:id/' element={<CardhouseDetailPage />} />
         <Route path='cardhouse/:id/' element={<CardhousePage />} />

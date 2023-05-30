@@ -3,7 +3,7 @@ function ThreeTab(){
     return(
 
         <>
-            <table className="table">
+            <table className="table table-bordered">
                 <thead>
                 </thead>
                 <tbody>
