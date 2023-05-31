@@ -1,11 +1,11 @@
-import Reac from "react"
+import React from "react"
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 const StepOne = ({ onePageInfo, nextStep, handleOnChange }) => {
     return (
         <>
             <Modal.Header closeButton>
-                <Modal.Title>Основные сведения об
+                <Modal.Title>Основные сведения об 
                     объекте недвижимого имущества</Modal.Title>
             </Modal.Header>
             <div className="md-stepper-horizontal orange">

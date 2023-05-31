@@ -16,7 +16,7 @@ import SixTab from "./Tabs/sixtab";
 import SevenTab from "./Tabs/sevenTab";
 import EightTab from "./Tabs/eightTab";
 import NineTab from "./Tabs/nineTab";
-
+import styles from './style.css';
 
 function CardhouseDetailPage(props) {
   const { id } = useParams();
@@ -66,39 +66,38 @@ function CardhouseDetailPage(props) {
           <Tabs
       defaultActiveKey="nav-1-tab"
     >
-      <Tab eventKey="nav-1-tab" title="Основные сведения об
-                объекте недвижимого имущества">
+      <Tab eventKey="nav-1-tab" tabClassName="Booo" title='Основные сведения об объекте недвижимого имущества'>
       <FirstTab />
       </Tab>
-      <Tab eventKey="nav-2-tab" title="Сведения о регистрации
+      <Tab eventKey="nav-2-tab" tabClassName="Booo"  title="Сведения о регистрации
                 объекта недвижимого имущества">
      <SecondTab />
       </Tab>
-      <Tab eventKey="nav-3-tab" title="Сведения об
+      <Tab eventKey="nav-3-tab" tabClassName="Booo"  title="Сведения об
                 ограничениях (обременениях) на объект недвижимого имущества">
       <ThreeTab />
       </Tab>
-      <Tab eventKey="nav-4-tab" title="Сведения о жилых
+      <Tab eventKey="nav-4-tab" tabClassName="Booo"  title="Сведения о жилых
                 помещениях">
        <FourTab />
       </Tab>
-      <Tab eventKey="nav-5-tab" title="Прочие технические 
+      <Tab eventKey="nav-5-tab" tabClassName="Booo"  title="Прочие технические 
                 характеристики объекта недвижимого имущества">
        <FiveTab />
        </Tab>
-       <Tab eventKey="nav-6-tab" title="Финаносвые
+       <Tab eventKey="nav-6-tab" tabClassName="Booo"  title="Финаносвые
                 показатели 
                 объекта недвижимого имущества">
        <SixTab />
        </Tab>
-       <Tab eventKey="nav-7-tab" title="Выбытие имущетсва 
+       <Tab eventKey="nav-7-tab" tabClassName="Booo"  title="Выбытие имущетсва 
                 объекта недвижимого  имущества">
        <SevenTab />
        </Tab>
-       <Tab eventKey="nav-8-tab" title="Документы">
+       <Tab eventKey="nav-8-tab" tabClassName="Booo"  title="Документы">
        <EightTab />
        </Tab>
-       <Tab eventKey="nav-9-tab" title="Архив">
+       <Tab eventKey="nav-9-tab" tabClassName="Booo"  title="Архив">
        <NineTab />
        </Tab>
     </Tabs>

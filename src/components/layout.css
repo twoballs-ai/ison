@@ -51,7 +51,7 @@ body{
         background-color: #F4F6F8;
         grid-template-areas:
           "hd hd hd hd   hd   hd   hd   hd   hd   hd   hd   hd"
-          "sb sb sb main main main main main main main main main";
+          "sb main main main main main main main main main main main";
     }
 .logo {
   width: 300px;
@@ -131,7 +131,7 @@ body{
         grid-auto-rows: minmax(65px, auto);
         grid-template-areas:
           "hd hd hd hd   hd   hd   hd   hd   hd   hd   hd   hd"
-          "sb sb sb main main main main main main main main main";
+          "sb main main main main main main main main main main main";
     }
 .sidebar {
     grid-area: sb;
@@ -151,7 +151,7 @@ body{
         grid-auto-rows: minmax(65px, auto);
         grid-template-areas:
           "hd hd hd hd   hd   hd   hd   hd   hd   hd   hd   hd"
-          "sb sb sb main main main main main main main main main";
+          "sb main main main main main main main main main main main";
     }
 .sidebar {
     grid-area: sb;
@@ -170,7 +170,7 @@ body{
         grid-auto-rows: minmax(65px, auto);
         grid-template-areas:
           "hd hd hd hd   hd   hd   hd   hd   hd   hd   hd   hd"
-          "sb sb sb main main main main main main main main main";
+          "sb main main main main main main main main main main main";
     }
 .sidebar {
     grid-area: sb;
